@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Decorya ديكوريا</title>
+<meta name="description" content="ديكوريا — أعمال الباركيه، بديل الخشب والرخام، ألواح الديكور وبراويز الحوائط في الكويت.">
+<link rel="icon" href="assets/img/logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&family=Reem+Kufi:wght@400;500;600&family=Jost:wght@300;400;500&display=swap">
+<style>
+:root{
+  --ground:#F5F3EF;
+  --panel:#ECE7DF;
+  --ink:#1D1814;
+  --muted:#6B6158;
+  --line:#D9D1C5;
+  --oak:#A8703F;
+  --oak-ink:#8A5A30;
+  --walnut:#2B211A;
+  --on-walnut:#F2EBE1;
+  --ar-display:"Reem Kufi","IBM Plex Sans Arabic",system-ui,sans-serif;
+  --ar-body:"IBM Plex Sans Arabic",system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;
+  --latin:"Jost","Helvetica Neue",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --ground:#16120F;--panel:#211B16;--ink:#EEE7DD;--muted:#A89C8F;--line:#3A3029;
+    --oak:#C98E57;--oak-ink:#D9A06A;--walnut:#0F0C0A;--on-walnut:#EEE7DD;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ground:#16120F;--panel:#211B16;--ink:#EEE7DD;--muted:#A89C8F;--line:#3A3029;
+  --oak:#C98E57;--oak-ink:#D9A06A;--walnut:#0F0C0A;--on-walnut:#EEE7DD;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--ar-body);font-size:17px;line-height:1.75}
+html[lang="en"] body{font-family:var(--latin);line-height:1.6}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--oak);outline-offset:3px}
+.wrap{max-width:1180px;margin-inline:auto;padding-inline:clamp(16px,4vw,40px)}
+h1,h2,h3{font-family:var(--ar-display);font-weight:500;line-height:1.25;text-wrap:balance;margin:0}
+html[lang="en"] h1,html[lang="en"] h2,html[lang="en"] h3{font-family:var(--latin);font-weight:400;letter-spacing:-.01em}
+.eyebrow{font-family:var(--latin);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--oak-ink);font-weight:500}
+p{margin:0}
+
+/* header */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--ground) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand img{width:40px;height:40px;border-radius:50%;object-fit:cover;background:#fff}
+.brand span{font-family:var(--latin);font-size:20px;letter-spacing:.04em}
+nav.links{display:flex;gap:26px;font-size:15px}
+nav.links a{text-decoration:none;color:var(--muted)}
+nav.links a:hover{color:var(--ink)}
+.tools{display:flex;gap:8px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--ink);background:var(--ink);color:var(--ground);padding:10px 20px;border-radius:2px;text-decoration:none;font-size:15px;font-family:inherit;cursor:pointer;transition:background .2s,color .2s}
+.btn:hover{background:var(--oak);border-color:var(--oak);color:#fff}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.lang{font-family:var(--latin);font-size:13px;letter-spacing:.08em;padding:8px 12px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer;border-radius:2px}
+.lang:hover{border-color:var(--ink)}
+@media (max-width:860px){nav.links{display:none}.tools .btn{display:none}}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(24px,5vw,72px);align-items:center;padding-block:clamp(40px,7vw,88px)}
+.hero h1{font-size:clamp(40px,6.4vw,76px);letter-spacing:0}
+.hero h1 em{font-style:normal;color:var(--oak-ink)}
+.hero .lede{margin-top:22px;max-width:34em;color:var(--muted);font-size:clamp(17px,1.6vw,19px)}
+.hero .cta{margin-top:32px;display:flex;flex-wrap:wrap;gap:12px}
+.hero figure{margin:0;position:relative}
+.hero figure img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:2px}
+.hero figcaption{position:absolute;inset-inline-start:-1px;bottom:24px;background:var(--ground);padding:12px 18px;font-size:14px;border:1px solid var(--line);max-width:80%}
+.hero figcaption b{display:block;font-family:var(--latin);font-weight:500;letter-spacing:.06em}
+@media (max-width:860px){.hero{grid-template-columns:1fr}.hero figure img{aspect-ratio:4/3.4}}
+
+/* strip of material codes */
+.codes{border-block:1px solid var(--line);background:var(--panel)}
+.codes ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr)}
+.codes li{padding:18px 12px;text-align:center;border-inline-start:1px solid var(--line)}
+.codes li:first-child{border-inline-start:0}
+.codes .c{font-family:var(--latin);font-size:22px;letter-spacing:.06em;display:block}
+.codes .n{font-size:14px;color:var(--muted)}
+@media (max-width:700px){.codes ul{grid-template-columns:repeat(2,1fr)}.codes li{border-inline-start:0;border-top:1px solid var(--line)}.codes li:nth-child(-n+2){border-top:0}.codes li:last-child{grid-column:1/-1}}
+
+section{padding-block:clamp(56px,8vw,104px)}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:40px}
+.sec-head h2{font-size:clamp(30px,4vw,46px);margin-top:10px}
+.sec-head p{max-width:30em;color:var(--muted)}
+
+/* services */
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,36px)}
+.svc{display:flex;flex-direction:column;gap:14px}
+.svc img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:2px;transition:transform .5s}
+.svc .ph{overflow:hidden}
+.svc:hover img{transform:scale(1.03)}
+.svc .tag{font-family:var(--latin);font-size:12px;letter-spacing:.18em;color:var(--oak-ink)}
+.svc h3{font-size:24px}
+.svc p{color:var(--muted);font-size:16px}
+@media (max-width:900px){.services{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.services{grid-template-columns:1fr}}
+
+/* why */
+.why{background:var(--walnut);color:var(--on-walnut)}
+.why .eyebrow{color:var(--oak)}
+.why .sec-head p{color:color-mix(in srgb,var(--on-walnut) 70%,transparent)}
+.points{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid color-mix(in srgb,var(--on-walnut) 20%,transparent)}
+.pt{padding:28px 24px 8px 0;border-inline-start:1px solid color-mix(in srgb,var(--on-walnut) 20%,transparent);padding-inline:24px}
+.pt:first-child{border-inline-start:0;padding-inline-start:0}
+.pt h3{font-size:21px;margin-bottom:10px}
+.pt p{font-size:15px;color:color-mix(in srgb,var(--on-walnut) 72%,transparent)}
+@media (max-width:900px){.points{grid-template-columns:1fr 1fr}.pt{border-inline-start:0;padding-inline:0 20px;border-bottom:1px solid color-mix(in srgb,var(--on-walnut) 20%,transparent);padding-bottom:24px}}
+@media (max-width:520px){.points{grid-template-columns:1fr}}
+
+/* gallery */
+.gallery{columns:4 220px;column-gap:14px}
+.gallery a{display:block;margin-bottom:14px;break-inside:avoid;position:relative;overflow:hidden;border-radius:2px}
+.gallery img{width:100%;transition:transform .5s,filter .3s}
+.gallery a:hover img{transform:scale(1.03)}
+.gallery .play{position:absolute;top:10px;inset-inline-end:10px;font-family:var(--latin);font-size:11px;letter-spacing:.14em;background:rgba(20,15,12,.7);color:#fff;padding:4px 8px}
+
+/* process */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;counter-reset:s}
+.step{border-top:2px solid var(--ink);padding-top:18px}
+.step::before{counter-increment:s;content:counter(s,decimal-leading-zero);font-family:var(--latin);font-size:13px;letter-spacing:.14em;color:var(--oak-ink)}
+.step h3{font-size:21px;margin:8px 0}
+.step p{color:var(--muted);font-size:15px}
+@media (max-width:860px){.steps{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.steps{grid-template-columns:1fr}}
+
+/* contact */
+.contact{background:var(--panel);border-top:1px solid var(--line)}
+.contact-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(28px,5vw,72px);align-items:start}
+.contact h2{font-size:clamp(32px,4.4vw,52px);margin-top:10px}
+.contact .lede{color:var(--muted);margin-top:16px;max-width:32em}
+.cards{display:grid;gap:0;border-top:1px solid var(--line)}
+.row{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.row .k{font-size:14px;color:var(--muted)}
+.row .v{font-family:var(--latin);font-size:22px;letter-spacing:.04em;direction:ltr;user-select:all}
+.row a.v{text-decoration:none}
+.row a.v:hover{color:var(--oak-ink)}
+.copy{font-family:inherit;font-size:13px;border:1px solid var(--line);background:transparent;color:var(--ink);padding:6px 12px;cursor:pointer;border-radius:2px}
+.copy:hover{border-color:var(--ink)}
+@media (max-width:860px){.contact-grid{grid-template-columns:1fr}}
+
+footer{padding-block:28px;font-size:14px;color:var(--muted)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.float-wa{position:fixed;bottom:calc(18px + env(safe-area-inset-bottom,0px));inset-inline-start:18px;z-index:20;width:56px;height:56px;border-radius:50%;background:#1f9d55;color:#fff;display:grid;place-items:center;box-shadow:0 6px 20px rgba(0,0,0,.2)}
+.float-wa svg{width:28px;height:28px}
+[data-en]{}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap bar">
+    <a class="brand" href="#home"><img src="assets/img/logo.jpg" alt="Decorya logo"><span>Decorya</span></a>
+    <nav class="links">
+      <a href="#services" data-en="Services">خدماتنا</a>
+      <a href="#why" data-en="Why us">لماذا ديكوريا</a>
+      <a href="#work" data-en="Our work">أعمالنا</a>
+      <a href="#contact" data-en="Contact">تواصل معنا</a>
+    </nav>
+    <div class="tools">
+      <button class="lang" id="langToggle" type="button" aria-label="Switch language">EN</button>
+      <a class="btn" href="https://wa.me/96550841899" target="_blank" rel="noopener" data-en="Get a quote">اطلب عرض سعر</a>
+    </div>
+  </div>
+</header>
+
+<main id="home">
+  <div class="wrap hero">
+    <div>
+      <p class="eyebrow">Parquet · WPC · Wall Frames — Kuwait</p>
+      <h1 data-en-html="Every step tells the story of <em>Decorya</em> luxury">كل خطوة تحكي <em>فخامة</em> ديكوريا</h1>
+      <p class="lede" data-en="We specialise in wood and marble alternatives, wall-frame panelling, skirting and flooring of every kind — using the finest PVC and WPC products, installed by our own team across Kuwait.">تخصصنا وتميزنا في أعمال بديل الخشب والرخام، تنفيذ براويز الحوائط، وتركيب النعلات والأرضيات بجميع أنواعها — باستخدام أفضل منتجات الـ PVC و WPC، وبتركيب فريقنا في جميع مناطق الكويت.</p>
+      <div class="cta">
+        <a class="btn" href="https://wa.me/96550841899" target="_blank" rel="noopener" data-en="Chat on WhatsApp">تواصل عبر واتساب</a>
+        <a class="btn ghost" href="#work" data-en="View our work">شاهد أعمالنا</a>
+      </div>
+    </div>
+    <figure>
+      <img src="assets/img/p02.jpg" alt="Oak parquet in a modern living room">
+      <figcaption><b>Decorya Parquet</b><span data-en="Touch of luxury for every floor">لمسة فخامة لكل أرضية</span></figcaption>
+    </figure>
+  </div>
+
+  <div class="codes">
+    <ul class="wrap">
+      <li><span class="c">Parquet</span><span class="n" data-en="Parquet flooring">باركي</span></li>
+      <li><span class="c">W.P</span><span class="n" data-en="Wood alternative">بديل الخشب</span></li>
+      <li><span class="c">F.B</span><span class="n" data-en="Decor panels">ألواح ديكور</span></li>
+      <li><span class="c">S.P</span><span class="n" data-en="Stone alternative">بديل الحجر</span></li>
+      <li><span class="c">WallFrame</span><span class="n" data-en="Wall frames">براويز الحوائط</span></li>
+    </ul>
+  </div>
+
+  <section id="services">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <p class="eyebrow">Services</p>
+          <h2 data-en="What we do">ماذا نقدّم</h2>
+        </div>
+        <p data-en="From the floor to the walls, one team handles supply and installation — clean finishing, precise joints and materials made for Kuwait's climate.">من الأرضية إلى الجدران، فريق واحد يتولى التوريد والتركيب — تشطيب نظيف، وصلات دقيقة، ومواد تناسب أجواء الكويت.</p>
+      </div>
+      <div class="services">
+        <article class="svc">
+          <div class="ph"><img src="assets/img/p01.jpg" alt="Oak parquet floor" loading="lazy"></div>
+          <span class="tag">PARQUET</span>
+          <h3 data-en="Wooden parquet floors">أرضيات باركيه خشبية</h3>
+          <p data-en="Warm, natural-look parquet that is completely safe for your family's health — laid straight or in herringbone.">باركيه بمظهر طبيعي دافئ، آمن تماماً على صحة عائلتك — تركيب مستقيم أو بنقشة هيرنغبون (مثلثات).</p>
+        </article>
+        <article class="svc">
+          <div class="ph"><img src="assets/img/p08.jpg" alt="Waterproof SPC flooring" loading="lazy"></div>
+          <span class="tag">SPC</span>
+          <h3 data-en="Waterproof SPC parquet">باركي SPC ضد الماء</h3>
+          <p data-en="Rigid stone-core planks that resist water and scratches — ideal for kitchens, entrances and busy homes.">ألواح بقلب حجري صلب مقاومة للماء والخدوش — مثالية للمطابخ والمداخل والبيوت كثيرة الحركة.</p>
+        </article>
+        <article class="svc">
+          <div class="ph"><img src="assets/img/p09.jpg" alt="Classic wall frame panelling" loading="lazy"></div>
+          <span class="tag">WALLFRAME</span>
+          <h3 data-en="Wall frames & mouldings">براويز الحوائط</h3>
+          <p data-en="Classic and modern frame panelling that gives any wall depth and elegance, finished in any colour.">براويز كلاسيكية وعصرية تمنح الجدار عمقاً وأناقة، مع دهان باللون الذي تختاره.</p>
+        </article>
+        <article class="svc">
+          <div class="ph"><img src="assets/img/p06.jpg" alt="Wood alternative panels" loading="lazy"></div>
+          <span class="tag">W.P · F.B</span>
+          <h3 data-en="Wood alternative & decor panels">بديل الخشب وألواح الديكور</h3>
+          <p data-en="PVC and WPC panels with the look of real wood — no termites, no warping, minimal maintenance.">ألواح PVC و WPC بمظهر الخشب الحقيقي — بدون سوس أو تشقق، وبأقل صيانة.</p>
+        </article>
+        <article class="svc">
+          <div class="ph"><img src="assets/img/p10.jpg" alt="Stone alternative feature wall" loading="lazy"></div>
+          <span class="tag">S.P</span>
+          <h3 data-en="Stone & marble alternative">بديل الحجر والرخام</h3>
+          <p data-en="Lightweight marble- and stone-effect sheets for feature walls, TV units and entrances.">ألواح خفيفة بمظهر الرخام والحجر لجدران الواجهة ووحدات التلفزيون والمداخل.</p>
+        </article>
+        <article class="svc">
+          <div class="ph"><img src="assets/img/p12.jpg" alt="Wallpaper installation" loading="lazy"></div>
+          <span class="tag">WALLPAPER · SKIRTING</span>
+          <h3 data-en="Wallpaper & skirting">ورق جدران ونعلات</h3>
+          <p data-en="Wallpaper supply and fitting, plus foam and PVC skirting boards to finish every room neatly.">توريد وتركيب ورق الجدران، مع نعلات فوم و PVC لتشطيب نظيف لكل غرفة.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="why" class="why">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <p class="eyebrow">Why Decorya</p>
+          <h2 data-en="Why clients choose us">لماذا يختارنا عملاؤنا</h2>
+        </div>
+        <p data-en="Luxury you can feel underfoot — with the practicality a family home needs.">فخامة تشعر بها تحت قدميك — مع العملية التي يحتاجها بيت العائلة.</p>
+      </div>
+      <div class="points">
+        <div class="pt"><h3 data-en="Specialists">متخصصون</h3><p data-en="Parquet and wall finishing is all we do, so every detail gets full attention.">الباركيه والتشطيبات الجدارية هي تخصصنا، لذلك كل تفصيلة تنال اهتمامنا.</p></div>
+        <div class="pt"><h3 data-en="Premium materials">أفضل الخامات</h3><p data-en="Top-grade PVC, WPC and SPC products that last and look the part.">منتجات PVC و WPC و SPC عالية الجودة تدوم وتحافظ على شكلها.</p></div>
+        <div class="pt"><h3 data-en="Safe for family">آمن لعائلتك</h3><p data-en="Materials that are safe for children and cause no harm to your feet or health.">خامات آمنة للأطفال ولا تسبب أي أضرار على قدميك أو صحتك.</p></div>
+        <div class="pt"><h3 data-en="Clean installation">تركيب نظيف وسريع</h3><p data-en="Our own team measures, installs and hands over a finished room.">فريقنا يقيس ويركّب ويسلّمك الغرفة جاهزة.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <p class="eyebrow">Portfolio</p>
+          <h2 data-en="Recent projects">من أعمالنا</h2>
+        </div>
+        <p data-en="Real installations from our Instagram — tap any photo to see the full post.">أعمال منفّذة من حسابنا على إنستغرام — اضغط على أي صورة لمشاهدة المنشور.</p>
+      </div>
+      <div class="gallery">
+        <a href="https://www.instagram.com/decorya.kw/p/DQZJobODBnR/" target="_blank" rel="noopener"><img src="assets/img/p03.jpg" alt="Herringbone parquet" loading="lazy"></a>
+        <a href="https://www.instagram.com/decorya.kw/p/DdX-h2SMJkI/" target="_blank" rel="noopener"><img src="assets/img/p04.jpg" alt="Parquet with foam skirting" loading="lazy"></a>
+        <a href="https://www.instagram.com/decorya.kw/reel/DdX9_Sds9ut/" target="_blank" rel="noopener"><span class="play">REEL</span><img src="assets/img/p05.jpg" alt="Parquet in a modern kitchen" loading="lazy"></a>
+        <a href="https://www.instagram.com/decorya.kw/reel/DctK77DMsB_/" target="_blank" rel="noopener"><span class="play">REEL</span><img src="assets/img/p07.jpg" alt="SPC waterproof floor" loading="lazy"></a>
+        <a href="https://www.instagram.com/decorya.kw/reel/DQZJtWnjNcX/" target="_blank" rel="noopener"><span class="play">REEL</span><img src="assets/img/p02.jpg" alt="Decorya parquet living room" loading="lazy"></a>
+        <a href="https://www.instagram.com/decorya.kw/reel/DctJX55MNZe/" target="_blank" rel="noopener"><span class="play">REEL</span><img src="assets/img/p09.jpg" alt="Wall frames" loading="lazy"></a>
+        <a href="https://www.instagram.com/decorya.kw/p/Dbr0NN3MrQw/" target="_blank" rel="noopener"><img src="assets/img/p12.jpg" alt="Wallpaper" loading="lazy"></a>
+        <a href="https://www.instagram.com/decorya.kw/reel/DbsFecmsLIf/" target="_blank" rel="noopener"><span class="play">REEL</span><img src="assets/img/p11.jpg" alt="Wooden parquet flooring" loading="lazy"></a>
+        <a href="https://www.instagram.com/decorya.kw/reel/DdXdgrFs-Sx/" target="_blank" rel="noopener"><span class="play">REEL</span><img src="assets/img/p06.jpg" alt="Herringbone installation" loading="lazy"></a>
+        <a href="https://www.instagram.com/decorya.kw/reel/DbsGlGnsim3/" target="_blank" rel="noopener"><span class="play">REEL</span><img src="assets/img/p10.jpg" alt="Feature wall with frames" loading="lazy"></a>
+        <a href="https://www.instagram.com/decorya.kw/reel/DctJyMSsorW/" target="_blank" rel="noopener"><span class="play">REEL</span><img src="assets/img/p08.jpg" alt="SPC flooring" loading="lazy"></a>
+        <a href="https://www.instagram.com/decorya.kw/p/DQZJ5K9DF4j/" target="_blank" rel="noopener"><img src="assets/img/p01.jpg" alt="Wooden parquet safe for your health" loading="lazy"></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="process" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <p class="eyebrow">How it works</p>
+          <h2 data-en="From first message to finished room">من أول رسالة إلى غرفة جاهزة</h2>
+        </div>
+      </div>
+      <div class="steps">
+        <div class="step"><h3 data-en="Message us">راسلنا</h3><p data-en="Send photos or measurements on WhatsApp.">أرسل صور المكان أو المقاسات عبر واتساب.</p></div>
+        <div class="step"><h3 data-en="Choose materials">اختر الخامة</h3><p data-en="We help you pick colours and finishes from our samples.">نساعدك في اختيار الألوان والتشطيبات من العينات.</p></div>
+        <div class="step"><h3 data-en="Site visit & quote">زيارة وعرض سعر</h3><p data-en="We measure on site and give a clear price.">نقيس في الموقع ونقدّم سعراً واضحاً.</p></div>
+        <div class="step"><h3 data-en="Installation">التركيب</h3><p data-en="Our team installs and hands over a clean, finished space.">فريقنا يركّب ويسلّمك المكان نظيفاً وجاهزاً.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="wrap contact-grid">
+      <div>
+        <p class="eyebrow">Contact</p>
+        <h2 data-en="Let's plan your floor">خلّنا نخطط لأرضيتك</h2>
+        <p class="lede" data-en="Call or WhatsApp us for a free consultation and quote anywhere in Kuwait.">اتصل بنا أو راسلنا على واتساب لاستشارة وعرض سعر مجاني في جميع مناطق الكويت.</p>
+      </div>
+      <div class="cards">
+        <div class="row"><span class="k" data-en="Phone / WhatsApp">الهاتف / واتساب</span><span style="display:flex;gap:12px;align-items:center"><a class="v" id="phone" href="https://wa.me/96550841899" target="_blank" rel="noopener">+965 5084 1899</a><button class="copy" type="button" id="copyBtn" data-en="Copy">نسخ</button></span></div>
+        <div class="row"><span class="k" data-en="Instagram">إنستغرام</span><a class="v" href="https://www.instagram.com/decorya.kw/" target="_blank" rel="noopener">@decorya.kw</a></div>
+        <div class="row"><span class="k" data-en="Service area">منطقة الخدمة</span><span class="v" style="font-family:inherit;font-size:18px;direction:inherit" data-en="All of Kuwait">جميع مناطق الكويت</span></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Decorya · ديكوريا</span>
+    <span data-en="Parquet · Wood alternative · Wall frames">باركيه · بديل الخشب · براويز الحوائط</span>
+  </div>
+</footer>
+
+<a class="float-wa" href="https://wa.me/96550841899" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12 0C5.4 0 .1 5.3.1 11.9c0 2.1.6 4.1 1.6 5.9L0 24l6.4-1.7a11.9 11.9 0 0 0 5.6 1.4h.1c6.6 0 11.9-5.3 11.9-11.9 0-3.2-1.2-6.2-3.5-8.3zM12 21.7c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.8 1 1-3.7-.2-.4a9.8 9.8 0 0 1-1.5-5.2c0-5.4 4.4-9.8 9.9-9.8 2.6 0 5.1 1 7 2.9a9.7 9.7 0 0 1 2.9 7c0 5.4-4.5 9.8-9.9 9.8zm5.4-7.3c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1l-.9 1.2c-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5a9 9 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.6l.4-.5.3-.5v-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.5.2-.7.2-1.3.2-1.5-.1-.1-.3-.2-.6-.3z"/></svg>
+</a>
+
+<script>
+(function(){
+  var html=document.documentElement, btn=document.getElementById('langToggle');
+  var nodes=[].slice.call(document.querySelectorAll('[data-en],[data-en-html]'));
+  nodes.forEach(function(n){ n.dataset.ar=n.innerHTML; });
+  function set(lang){
+    var en=lang==='en';
+    html.lang=en?'en':'ar'; html.dir=en?'ltr':'rtl';
+    nodes.forEach(function(n){ n.innerHTML = en ? (n.dataset.enHtml||n.dataset.en) : n.dataset.ar; });
+    btn.textContent=en?'عربي':'EN';
+    try{localStorage.setItem('decorya-lang',lang)}catch(e){}
+  }
+  btn.addEventListener('click',function(){ set(html.lang==='en'?'ar':'en'); });
+  try{ if(localStorage.getItem('decorya-lang')==='en') set('en'); }catch(e){}
+
+  var copy=document.getElementById('copyBtn');
+  copy.addEventListener('click',function(){
+    var num='+96550841899', done=function(){ copy.textContent = html.lang==='en'?'Copied':'تم النسخ'; setTimeout(function(){copy.textContent= html.lang==='en'?'Copy':'نسخ'},1800); };
+    try{ navigator.clipboard.writeText(num).then(done,function(){ select(); }); }catch(e){ select(); }
+    function select(){ var r=document.createRange(); r.selectNodeContents(document.getElementById('phone')); var s=getSelection(); s.removeAllRanges(); s.addRange(r); }
+  });
+})();
+</script>
+</body>
+</html>
