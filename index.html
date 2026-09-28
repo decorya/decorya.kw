@@ -80,43 +80,10 @@ nav.links a:hover{color:var(--ink)}
 .hero figcaption b{display:block;font-family:var(--latin);font-weight:500;letter-spacing:.06em}
 @media (max-width:860px){.hero{grid-template-columns:1fr}.hero figure img{aspect-ratio:4/3.4}}
 
-/* strip of material codes */
-.codes{border-block:1px solid var(--line);background:var(--panel)}
-.codes ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr)}
-.codes li{padding:18px 12px;text-align:center;border-inline-start:1px solid var(--line)}
-.codes li:first-child{border-inline-start:0}
-.codes .c{font-family:var(--latin);font-size:22px;letter-spacing:.06em;display:block}
-.codes .n{font-size:14px;color:var(--muted)}
-@media (max-width:700px){.codes ul{grid-template-columns:repeat(2,1fr)}.codes li{border-inline-start:0;border-top:1px solid var(--line)}.codes li:nth-child(-n+2){border-top:0}.codes li:last-child{grid-column:1/-1}}
-
 section{padding-block:clamp(56px,8vw,104px)}
 .sec-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:40px}
 .sec-head h2{font-size:clamp(30px,4vw,46px);margin-top:10px}
 .sec-head p{max-width:30em;color:var(--muted)}
-
-/* services */
-.services{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,36px)}
-.svc{display:flex;flex-direction:column;gap:14px}
-.svc img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:2px;transition:transform .5s}
-.svc .ph{overflow:hidden}
-.svc:hover img{transform:scale(1.03)}
-.svc .tag{font-family:var(--latin);font-size:12px;letter-spacing:.18em;color:var(--oak-ink)}
-.svc h3{font-size:24px}
-.svc p{color:var(--muted);font-size:16px}
-@media (max-width:900px){.services{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:560px){.services{grid-template-columns:1fr}}
-
-/* why */
-.why{background:var(--walnut);color:var(--on-walnut)}
-.why .eyebrow{color:var(--oak)}
-.why .sec-head p{color:color-mix(in srgb,var(--on-walnut) 70%,transparent)}
-.points{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid color-mix(in srgb,var(--on-walnut) 20%,transparent)}
-.pt{padding:28px 24px 8px 0;border-inline-start:1px solid color-mix(in srgb,var(--on-walnut) 20%,transparent);padding-inline:24px}
-.pt:first-child{border-inline-start:0;padding-inline-start:0}
-.pt h3{font-size:21px;margin-bottom:10px}
-.pt p{font-size:15px;color:color-mix(in srgb,var(--on-walnut) 72%,transparent)}
-@media (max-width:900px){.points{grid-template-columns:1fr 1fr}.pt{border-inline-start:0;padding-inline:0 20px;border-bottom:1px solid color-mix(in srgb,var(--on-walnut) 20%,transparent);padding-bottom:24px}}
-@media (max-width:520px){.points{grid-template-columns:1fr}}
 
 /* gallery */
 .gallery{columns:4 220px;column-gap:14px}
@@ -124,15 +91,6 @@ section{padding-block:clamp(56px,8vw,104px)}
 .gallery img{width:100%;transition:transform .5s,filter .3s}
 .gallery a:hover img{transform:scale(1.03)}
 .gallery .play{position:absolute;top:10px;inset-inline-end:10px;font-family:var(--latin);font-size:11px;letter-spacing:.14em;background:rgba(20,15,12,.7);color:#fff;padding:4px 8px}
-
-/* process */
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;counter-reset:s}
-.step{border-top:2px solid var(--ink);padding-top:18px}
-.step::before{counter-increment:s;content:counter(s,decimal-leading-zero);font-family:var(--latin);font-size:13px;letter-spacing:.14em;color:var(--oak-ink)}
-.step h3{font-size:21px;margin:8px 0}
-.step p{color:var(--muted);font-size:15px}
-@media (max-width:860px){.steps{grid-template-columns:1fr 1fr}}
-@media (max-width:480px){.steps{grid-template-columns:1fr}}
 
 /* contact */
 .contact{background:var(--panel);border-top:1px solid var(--line)}
@@ -189,15 +147,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     </figure>
   </div>
 
-  <div class="codes">
-    <ul class="wrap">
-      <li><span class="c">Parquet</span><span class="n" data-en="Parquet flooring">باركي</span></li>
-      <li><span class="c">W.P</span><span class="n" data-en="Wood alternative">بديل الخشب</span></li>
-      <li><span class="c">F.B</span><span class="n" data-en="Decor panels">ألواح ديكور</span></li>
-      <li><span class="c">S.P</span><span class="n" data-en="Stone alternative">بديل الحجر</span></li>
-      <li><span class="c">WallFrame</span><span class="n" data-en="Wall frames">براويز الحوائط</span></li>
-    </ul>
-  </div>
 
 
 
