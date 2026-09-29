@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Decorya ديكوريا</title>
-<meta name="description" content="ديكوريا — أعمال الباركيه وبديل الخشب وألواح الديكور في الكويت.">
-<link rel="icon" href="assets/img/logo.jpg">
+<title>Floora فلورا</title>
+<meta name="description" content="فلورا — باركيه وأرضيات خشبية، توريد وتركيب في الكويت. كتالوج المنتجات.">
+<link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&family=Reem+Kufi:wght@400;500;600&family=Jost:wght@300;400;500&display=swap">
@@ -43,7 +43,7 @@ p{margin:0}
 header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--ground) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none}
-.brand img{width:40px;height:40px;border-radius:50%;object-fit:cover;background:#fff}
+.brand img{width:38px;height:38px}
 .brand span{font-family:var(--latin);font-size:20px;letter-spacing:.04em}
 nav.links{display:flex;gap:26px;font-size:15px}
 nav.links a{text-decoration:none;color:var(--muted)}
@@ -77,13 +77,34 @@ section{padding-block:clamp(56px,8vw,104px)}
 /* gallery */
 .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 @media (max-width:900px){.gallery{grid-template-columns:repeat(2,1fr)}}
-.gallery a{display:block;position:relative;overflow:hidden;border-radius:2px;aspect-ratio:3/4}
-.gallery img{width:100%;height:100%;object-fit:cover;transition:transform .5s,filter .3s}
-.gallery a:hover img{transform:scale(1.03)}
-.gallery .play{position:absolute;top:10px;inset-inline-end:10px;font-family:var(--latin);font-size:11px;letter-spacing:.14em;background:rgba(20,15,12,.7);color:#fff;padding:4px 8px}
+.gallery figure{margin:0;overflow:hidden;border-radius:2px;aspect-ratio:3/4}
+.gallery img{width:100%;height:100%;object-fit:cover}
+
+/* catalog */
+.catalog{background:var(--panel);border-block:1px solid var(--line)}
+.filters{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:28px;align-items:center}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-family:inherit;font-size:14px;padding:7px 16px;border:1px solid var(--line);background:var(--ground);color:var(--ink);border-radius:999px;cursor:pointer}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--ground)}
+.chips.tone .chip::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;margin-inline-end:8px;vertical-align:-1px;background:var(--sw,transparent);border:1px solid rgba(0,0,0,.15)}
+.chips.tone .chip[data-v="all"]::before{display:none}
+.count{font-size:14px;color:var(--muted);margin-inline-start:auto}
+.products{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
+.card{background:var(--ground);border:1px solid var(--line);border-radius:2px;display:flex;flex-direction:column;overflow:hidden}
+.card img{width:100%;aspect-ratio:12/5;object-fit:cover;background:var(--line)}
+.card .body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:6px;flex:1}
+.card .code{font-family:var(--latin);font-size:12px;letter-spacing:.18em;color:var(--oak-ink);font-weight:500}
+.card h3{font-size:21px}
+.card .series{font-size:14px;color:var(--muted)}
+.card .spec{font-family:var(--latin);font-size:13px;color:var(--muted);direction:ltr;text-align:start}
+html[dir="rtl"] .card .spec{text-align:end}
+.card .ask{margin-top:auto;padding-top:12px;font-size:14px;text-decoration:none;color:var(--oak-ink);font-weight:500;align-self:flex-start}
+.card .ask:hover{text-decoration:underline}
+.empty{color:var(--muted);padding:24px 0}
 
 /* contact */
-.contact{background:var(--panel);border-top:1px solid var(--line)}
+.contact{background:var(--ground)}
 .contact-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(28px,5vw,72px);align-items:start}
 .contact h2{font-size:clamp(32px,4.4vw,52px);margin-top:10px}
 .contact .lede{color:var(--muted);margin-top:16px;max-width:32em}
@@ -98,6 +119,7 @@ section{padding-block:clamp(56px,8vw,104px)}
 @media (max-width:860px){.contact-grid{grid-template-columns:1fr}}
 
 footer{padding-block:28px;font-size:14px;color:var(--muted)}
+@media (max-width:860px){footer{padding-bottom:96px}}
 footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .float-wa{position:fixed;bottom:calc(18px + env(safe-area-inset-bottom,0px));inset-inline-start:18px;z-index:20;width:56px;height:56px;border-radius:50%;background:#1f9d55;color:#fff;display:grid;place-items:center;box-shadow:0 6px 20px rgba(0,0,0,.2)}
 .float-wa svg{width:28px;height:28px}
@@ -108,8 +130,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
 <header class="top">
   <div class="wrap bar">
-    <a class="brand" href="#home"><img src="assets/img/logo.jpg" alt="Decorya logo"><span>Decorya</span></a>
+    <a class="brand" href="#home"><img src="assets/img/logo.svg" alt=""><span>Floora</span></a>
     <nav class="links">
+      <a href="#catalog" data-en="Catalog">الكتالوج</a>
       <a href="#work" data-en="Our work">أعمالنا</a>
       <a href="#contact" data-en="Contact">تواصل معنا</a>
     </nav>
@@ -124,21 +147,48 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   <div class="wrap hero">
     <div>
       <p class="eyebrow">Parquet · WPC — Kuwait</p>
-      <h1 data-en-html="Every step tells the story of <em>Decorya</em> luxury">كل خطوة تحكي <em>فخامة</em> ديكوريا</h1>
+      <h1 data-en-html="Every step tells the story of <em>Floora</em> luxury">كل خطوة تحكي <em>فخامة</em> فلورا</h1>
       <p class="lede" data-en="Parquet and wood alternatives — supplied and installed across Kuwait.">باركيه وبديل الخشب — توريد وتركيب في جميع مناطق الكويت.</p>
       <div class="cta">
         <a class="btn" href="https://wa.me/96550841899" target="_blank" rel="noopener" data-en="Chat on WhatsApp">تواصل عبر واتساب</a>
-        <a class="btn ghost" href="#work" data-en="View our work">شاهد أعمالنا</a>
+        <a class="btn ghost" href="#catalog" data-en="Browse the catalog">تصفح الكتالوج</a>
       </div>
     </div>
     <figure>
-      <img src="assets/img/p02.jpg" alt="Oak parquet in a modern living room">
-      <figcaption><b>Decorya Parquet</b><span data-en="Touch of luxury for every floor">لمسة فخامة لكل أرضية</span></figcaption>
+      <img src="assets/img/hero.jpg" alt="Light oak herringbone parquet in a bedroom">
+      <figcaption><b>Floora Parquet</b><span data-en="Touch of luxury for every floor">لمسة فخامة لكل أرضية</span></figcaption>
     </figure>
   </div>
 
 
 
+
+  <section id="catalog" class="catalog">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <p class="eyebrow">Catalog</p>
+          <h2 data-en="Product catalog">كتالوج المنتجات</h2>
+        </div>
+        <p data-en="Laminate planks and herringbone parquet. Tap a product to ask about price and availability on WhatsApp.">ألواح باركيه وباركيه هيرينجبون. اضغط على أي منتج للاستفسار عن السعر والتوفر عبر واتساب.</p>
+      </div>
+      <div class="filters">
+        <div class="chips" id="fType" role="group" aria-label="Type">
+          <button class="chip" type="button" data-v="all" aria-pressed="true" data-en="All">الكل</button>
+          <button class="chip" type="button" data-v="plank" aria-pressed="false" data-en="Planks">ألواح</button>
+          <button class="chip" type="button" data-v="herringbone" aria-pressed="false" data-en="Herringbone">هيرينجبون</button>
+        </div>
+        <div class="chips tone" id="fTone" role="group" aria-label="Tone">
+          <button class="chip" type="button" data-v="all" aria-pressed="true" data-en="Any tone">كل الألوان</button>
+          <button class="chip" type="button" data-v="light" aria-pressed="false" style="--sw:#E4DBCF" data-en="Light">فاتح</button>
+          <button class="chip" type="button" data-v="medium" aria-pressed="false" style="--sw:#B58A5E" data-en="Medium">متوسط</button>
+          <button class="chip" type="button" data-v="dark" aria-pressed="false" style="--sw:#4E3527" data-en="Dark">غامق</button>
+        </div>
+        <span class="count" id="count" aria-live="polite"></span>
+      </div>
+      <div class="products" id="products"></div>
+    </div>
+  </section>
 
   <section id="work">
     <div class="wrap">
@@ -149,14 +199,14 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
         </div>
       </div>
       <div class="gallery">
-        <a href="https://www.instagram.com/decorya.kw/p/DQZJobODBnR/" target="_blank" rel="noopener"><img src="assets/img/p03.jpg" alt="Herringbone parquet" loading="lazy"></a>
-        <a href="https://www.instagram.com/decorya.kw/p/DdX-h2SMJkI/" target="_blank" rel="noopener"><img src="assets/img/p04.jpg" alt="Parquet with foam skirting" loading="lazy"></a>
-        <a href="https://www.instagram.com/decorya.kw/reel/DdX9_Sds9ut/" target="_blank" rel="noopener"><span class="play">REEL</span><img src="assets/img/p05.jpg" alt="Parquet in a modern kitchen" loading="lazy"></a>
-        <a href="https://www.instagram.com/decorya.kw/reel/DctK77DMsB_/" target="_blank" rel="noopener"><span class="play">REEL</span><img src="assets/img/p07.jpg" alt="SPC waterproof floor" loading="lazy"></a>
-        <a href="https://www.instagram.com/decorya.kw/reel/DQZJtWnjNcX/" target="_blank" rel="noopener"><span class="play">REEL</span><img src="assets/img/p02.jpg" alt="Decorya parquet living room" loading="lazy"></a>
-        <a href="https://www.instagram.com/decorya.kw/reel/DctJX55MNZe/" target="_blank" rel="noopener"><span class="play">REEL</span><img src="assets/img/p09.jpg" alt="Wall frames" loading="lazy"></a>
-        <a href="https://www.instagram.com/decorya.kw/reel/DdXdgrFs-Sx/" target="_blank" rel="noopener"><span class="play">REEL</span><img src="assets/img/p06.jpg" alt="Herringbone parquet installation" loading="lazy"></a>
-        <a href="https://www.instagram.com/decorya.kw/reel/DbsFecmsLIf/" target="_blank" rel="noopener"><span class="play">REEL</span><img src="assets/img/p11.jpg" alt="Wooden parquet flooring" loading="lazy"></a>
+        <figure><img src="assets/img/p04.jpg" alt="Parquet with foam skirting" loading="lazy"></figure>
+        <figure><img src="assets/img/p05.jpg" alt="Parquet in a modern kitchen" loading="lazy"></figure>
+        <figure><img src="assets/img/p07.jpg" alt="SPC waterproof floor" loading="lazy"></figure>
+        <figure><img src="assets/img/p06.jpg" alt="Herringbone parquet installation" loading="lazy"></figure>
+        <figure><img src="assets/img/p08.jpg" alt="SPC floor with foam skirting" loading="lazy"></figure>
+        <figure><img src="assets/img/p09.jpg" alt="Wall frames" loading="lazy"></figure>
+        <figure><img src="assets/img/p10.jpg" alt="Light floor with wall panels" loading="lazy"></figure>
+        <figure><img src="assets/img/p11.jpg" alt="Wooden parquet flooring" loading="lazy"></figure>
       </div>
     </div>
   </section>
@@ -171,7 +221,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
       </div>
       <div class="cards">
         <div class="row"><span class="k" data-en="Phone / WhatsApp">الهاتف / واتساب</span><span style="display:flex;gap:12px;align-items:center"><a class="v" id="phone" href="https://wa.me/96550841899" target="_blank" rel="noopener">+965 5084 1899</a><button class="copy" type="button" id="copyBtn" data-en="Copy">نسخ</button></span></div>
-        <div class="row"><span class="k" data-en="Instagram">إنستغرام</span><a class="v" href="https://www.instagram.com/decorya.kw/" target="_blank" rel="noopener">@decorya.kw</a></div>
         <div class="row"><span class="k" data-en="Service area">منطقة الخدمة</span><span class="v" style="font-family:inherit;font-size:18px;direction:inherit" data-en="All over Kuwait">جميع مناطق الكويت</span></div>
       </div>
     </div>
@@ -180,7 +229,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
 <footer>
   <div class="wrap">
-    <span>© 2026 Decorya · ديكوريا</span>
+    <span>© 2026 Floora · فلورا</span>
     <span data-en="Parquet · Wood alternative">باركيه · بديل الخشب</span>
   </div>
 </footer>
@@ -192,6 +241,68 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 <script>
 (function(){
   var html=document.documentElement, btn=document.getElementById('langToggle');
+  var WA='96550841899';
+  var SERIES={
+    klasik:{en:'Classic series',ar:'سلسلة كلاسيك',spec:'AC3 · 8 mm · 192.5 × 1200 mm'},
+    modern:{en:'Modern series',ar:'سلسلة مودرن',spec:'AC4 · 8 mm · 192.5 × 1200 mm · V-groove'},
+    modernlong:{en:'Modern Long series',ar:'سلسلة مودرن لونج'},
+    serenza:{en:'Serenza series',ar:'سلسلة سيرينزا'},
+    silver:{en:'Silver series',ar:'سلسلة سيلفر'},
+    platinum:{en:'Platinum series',ar:'سلسلة بلاتينيوم'},
+    herringbone:{en:'Herringbone collection',ar:'مجموعة هيرينجبون',spec:'643 × 131 × 8 mm'}
+  };
+  var WOOD={oak:['Oak','بلوط'],pine:['Pine','صنوبر'],walnut:['Walnut','جوز']};
+  var P=[
+    ['1500','Milas Meşe','milas','plank','klasik','light','oak'],
+    ['702','Batı Çam','bati-cam','plank','klasik','light','pine'],
+    ['717','Rustik Ceviz','rustik-ceviz','plank','klasik','dark','walnut'],
+    ['705','Prestij Meşe','prestij','plank','modern','dark','oak'],
+    ['707','Aspendos Çam','aspendos','plank','modern','light','pine'],
+    ['709','Kafkas Meşe','kafkas','plank','modern','medium','oak'],
+    ['723','Sofya Meşe','sofya','plank','modernlong','light','oak'],
+    ['726','Ovenkol','ovenkol','plank','modernlong','dark','oak'],
+    ['2506','Mekong','mekong','plank','serenza','dark','oak'],
+    ['5007','Didim Meşe','didim','plank','silver','medium','oak'],
+    ['5008','Polar Meşe','polar','plank','silver','medium','oak'],
+    ['2108','Amasra Meşe','amasra','plank','platinum','light','oak'],
+    ['62663','Vouvray','vouvray','herringbone','herringbone','medium','oak'],
+    ['62704','Blois','blois','herringbone','herringbone','light','oak'],
+    ['62705','Chambord','chambord','herringbone','herringbone','light','oak'],
+    ['62706','Rilly','rilly','herringbone','herringbone','medium','oak'],
+    ['62707','Amboise','amboise','herringbone','herringbone','light','oak'],
+    ['62708','Chinon','chinon','herringbone','herringbone','medium','oak'],
+    ['62709','Saumur','saumur','herringbone','herringbone','dark','oak'],
+    ['62710','Tours','tours','herringbone','herringbone','dark','oak'],
+    ['63061','Mettray','mettray','herringbone','herringbone','dark','oak']
+  ];
+  var grid=document.getElementById('products'), count=document.getElementById('count');
+  var state={type:'all',tone:'all'};
+  function esc(t){ return String(t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+  function render(){
+    var en=html.lang==='en';
+    var list=P.filter(function(p){ return (state.type==='all'||p[3]===state.type)&&(state.tone==='all'||p[5]===state.tone); });
+    grid.innerHTML=list.map(function(p){
+      var s=SERIES[p[4]], w=WOOD[p[6]];
+      var msg=(en?'Hello Floora, I am interested in ':'مرحباً فلورا، أرغب بالاستفسار عن ')+p[0]+' '+p[1]+' ('+s.en+')';
+      return '<article class="card"><img src="assets/img/catalog/'+p[2]+'.jpg" alt="'+esc(p[1])+' floor swatch" loading="lazy">'+
+        '<div class="body"><span class="code">'+esc(p[0])+'</span><h3>'+esc(p[1])+'</h3>'+
+        '<span class="series">'+esc((en?s.en:s.ar)+' · '+(en?w[0]:w[1]))+'</span>'+
+        (s.spec?'<span class="spec">'+s.spec+'</span>':'')+
+        '<a class="ask" href="https://wa.me/'+WA+'?text='+encodeURIComponent(msg)+'" target="_blank" rel="noopener">'+(en?'Ask on WhatsApp →':'استفسر عبر واتساب ←')+'</a></div></article>';
+    }).join('') || '<p class="empty">'+(en?'No products match these filters.':'لا توجد منتجات مطابقة.')+'</p>';
+    count.textContent=en?(list.length+' products'):(list.length+' منتج');
+  }
+  function bind(id,key){
+    var box=document.getElementById(id);
+    box.addEventListener('click',function(e){
+      var b=e.target.closest('.chip'); if(!b) return;
+      state[key]=b.dataset.v;
+      [].forEach.call(box.children,function(c){ c.setAttribute('aria-pressed',c===b?'true':'false'); });
+      render();
+    });
+  }
+  bind('fType','type'); bind('fTone','tone');
+
   var nodes=[].slice.call(document.querySelectorAll('[data-en],[data-en-html]'));
   nodes.forEach(function(n){ n.dataset.ar=n.innerHTML; });
   function set(lang){
@@ -199,10 +310,12 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     html.lang=en?'en':'ar'; html.dir=en?'ltr':'rtl';
     nodes.forEach(function(n){ n.innerHTML = en ? (n.dataset.enHtml||n.dataset.en) : n.dataset.ar; });
     btn.textContent=en?'عربي':'EN';
-    try{localStorage.setItem('decorya-lang',lang)}catch(e){}
+    render();
+    try{localStorage.setItem('floora-lang',lang)}catch(e){}
   }
   btn.addEventListener('click',function(){ set(html.lang==='en'?'ar':'en'); });
-  try{ if(localStorage.getItem('decorya-lang')==='en') set('en'); }catch(e){}
+  render();
+  try{ if(localStorage.getItem('floora-lang')==='en') set('en'); }catch(e){}
 
   var copy=document.getElementById('copyBtn');
   copy.addEventListener('click',function(){
