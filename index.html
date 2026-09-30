@@ -103,11 +103,12 @@ h2.eyebrow,html[lang="en"] h2.eyebrow{font-family:var(--latin);font-weight:500;l
 @media (max-width:760px){.steps ol{grid-template-columns:1fr}}
 
 /* gallery */
-.gallery{columns:4 220px;column-gap:14px}
-@media (max-width:600px){.gallery{columns:2;column-gap:10px}}
-.gallery button{display:block;width:100%;margin:0 0 14px;padding:0;border:0;background:var(--line);break-inside:avoid;overflow:hidden;border-radius:2px;cursor:zoom-in;position:relative}
-@media (max-width:600px){.gallery button{margin-bottom:10px}}
-.gallery img{width:100%;height:auto;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media (max-width:760px){.gallery{grid-template-columns:repeat(2,1fr);gap:10px}}
+.gallery button{display:block;width:100%;aspect-ratio:4/5;padding:0;border:0;background:var(--line);overflow:hidden;border-radius:2px;cursor:zoom-in;position:relative}
+.gallery button.wide{grid-column:span 2;aspect-ratio:auto}
+@media (max-width:760px){.gallery button.wide{aspect-ratio:8/5}}
+.gallery img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
 @media (hover:hover){.gallery button:hover img{transform:scale(1.04)}}
 .gallery button::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(20,15,12,.35),transparent 40%);opacity:0;transition:opacity .25s}
 @media (hover:hover){.gallery button:hover::after{opacity:1}}
@@ -138,7 +139,9 @@ body.locked{overflow:hidden}
 .chips.tone .chip::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;margin-inline-end:8px;vertical-align:-1px;background:var(--sw,transparent);border:1px solid rgba(0,0,0,.15)}
 .chips.tone .chip[data-v="all"]::before{display:none}
 .count{font-size:14px;color:var(--muted);margin-inline-start:auto;font-variant-numeric:tabular-nums}
-.products{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
+.products{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media (max-width:900px){.products{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:540px){.products{grid-template-columns:1fr}}
 .card{background:var(--ground);border:1px solid var(--line);border-radius:2px;display:flex;flex-direction:column;overflow:hidden;transition:transform .25s ease-out,box-shadow .25s ease-out,border-color .25s;animation:fade .3s ease-out both}
 @media (hover:hover){.card:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(43,33,26,.10);border-color:#CFC4B5}.card:hover img{transform:scale(1.05)}}
 .card .ph{overflow:hidden;aspect-ratio:12/5;background:var(--line);position:relative}
@@ -271,13 +274,13 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
         <p data-en="Floors we have installed in homes across Kuwait. Tap a photo to view it full size.">أرضيات قمنا بتركيبها في منازل بالكويت. اضغط على أي صورة لعرضها بالحجم الكامل.</p>
       </div>
       <div class="gallery">
+        <button type="button" class="wide" data-i="6"><img src="assets/img/work/w07.webp" width="1000" height="750" alt="Oak planks through an open hallway" loading="lazy" decoding="async"></button>
         <button type="button" data-i="0"><img src="assets/img/work/w01.webp" width="562" height="1000" alt="Oak herringbone in a hallway" loading="lazy" decoding="async"></button>
         <button type="button" data-i="1"><img src="assets/img/work/w02.webp" width="750" height="1000" alt="Dark oak laminate planks" loading="lazy" decoding="async"></button>
         <button type="button" data-i="2"><img src="assets/img/work/w03.webp" width="562" height="1000" alt="Light oak herringbone bedroom" loading="lazy" decoding="async"></button>
         <button type="button" data-i="3"><img src="assets/img/work/w04.webp" width="562" height="1000" alt="Brown oak laminate planks" loading="lazy" decoding="async"></button>
         <button type="button" data-i="4"><img src="assets/img/work/w05.webp" width="562" height="1000" alt="Light herringbone in a bedroom" loading="lazy" decoding="async"></button>
         <button type="button" data-i="5"><img src="assets/img/work/w06.webp" width="750" height="1000" alt="Walnut-look laminate planks" loading="lazy" decoding="async"></button>
-        <button type="button" data-i="6"><img src="assets/img/work/w07.webp" width="1000" height="750" alt="Oak planks through an open hallway" loading="lazy" decoding="async"></button>
         <button type="button" data-i="7"><img src="assets/img/work/w08.webp" width="562" height="1000" alt="Natural oak herringbone" loading="lazy" decoding="async"></button>
         <button type="button" data-i="8"><img src="assets/img/work/w09.webp" width="905" height="1000" alt="Classic laminate at a doorway" loading="lazy" decoding="async"></button>
         <button type="button" data-i="9"><img src="assets/img/work/w10.webp" width="750" height="1000" alt="Herringbone down a corridor" loading="lazy" decoding="async"></button>
