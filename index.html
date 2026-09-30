@@ -75,10 +75,11 @@ section{padding-block:clamp(56px,8vw,104px)}
 .sec-head p{max-width:30em;color:var(--muted)}
 
 /* gallery */
-.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-@media (max-width:900px){.gallery{grid-template-columns:repeat(2,1fr)}}
-.gallery figure{margin:0;overflow:hidden;border-radius:2px;aspect-ratio:3/4}
-.gallery img{width:100%;height:100%;object-fit:cover}
+.gallery{columns:4 220px;column-gap:14px}
+@media (max-width:600px){.gallery{columns:2;column-gap:10px}}
+.gallery figure{margin:0 0 14px;break-inside:avoid;overflow:hidden;border-radius:2px;background:var(--line)}
+@media (max-width:600px){.gallery figure{margin-bottom:10px}}
+.gallery img{width:100%;height:auto}
 
 /* catalog */
 .catalog{background:var(--panel);border-block:1px solid var(--line)}
@@ -199,14 +200,25 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
         </div>
       </div>
       <div class="gallery">
-        <figure><img src="assets/img/p04.jpg" alt="Parquet with foam skirting" loading="lazy"></figure>
-        <figure><img src="assets/img/p05.jpg" alt="Parquet in a modern kitchen" loading="lazy"></figure>
-        <figure><img src="assets/img/p07.jpg" alt="SPC waterproof floor" loading="lazy"></figure>
-        <figure><img src="assets/img/p06.jpg" alt="Herringbone parquet installation" loading="lazy"></figure>
-        <figure><img src="assets/img/p08.jpg" alt="SPC floor with foam skirting" loading="lazy"></figure>
-        <figure><img src="assets/img/p09.jpg" alt="Wall frames" loading="lazy"></figure>
-        <figure><img src="assets/img/p10.jpg" alt="Light floor with wall panels" loading="lazy"></figure>
-        <figure><img src="assets/img/p11.jpg" alt="Wooden parquet flooring" loading="lazy"></figure>
+        <figure><img src="assets/img/work/w01.jpg" alt="Oak herringbone in a hallway" loading="lazy"></figure>
+        <figure><img src="assets/img/work/w02.jpg" alt="Dark oak laminate planks" loading="lazy"></figure>
+        <figure><img src="assets/img/work/w03.jpg" alt="Light oak herringbone bedroom" loading="lazy"></figure>
+        <figure><img src="assets/img/work/w04.jpg" alt="Brown oak laminate planks" loading="lazy"></figure>
+        <figure><img src="assets/img/work/w05.jpg" alt="Light herringbone in a bedroom" loading="lazy"></figure>
+        <figure><img src="assets/img/work/w06.jpg" alt="Walnut-look laminate planks" loading="lazy"></figure>
+        <figure><img src="assets/img/work/w07.jpg" alt="Oak planks through an open hallway" loading="lazy"></figure>
+        <figure><img src="assets/img/work/w08.jpg" alt="Natural oak herringbone" loading="lazy"></figure>
+        <figure><img src="assets/img/work/w09.jpg" alt="Classic laminate at a doorway" loading="lazy"></figure>
+        <figure><img src="assets/img/work/w10.jpg" alt="Herringbone down a corridor" loading="lazy"></figure>
+        <figure><img src="assets/img/work/w11.jpg" alt="Dark oak laminate in a bedroom" loading="lazy"></figure>
+        <figure><img src="assets/img/work/w12.jpg" alt="Rustic oak planks with white skirting" loading="lazy"></figure>
+        <figure><img src="assets/img/work/w13.jpg" alt="Oak planks with white skirting" loading="lazy"></figure>
+        <figure><img src="assets/img/work/w14.jpg" alt="Wall moulding panels" loading="lazy"></figure>
+        <figure><img src="assets/img/work/w15.jpg" alt="Grey oak herringbone" loading="lazy"></figure>
+        <figure><img src="assets/img/work/w16.jpg" alt="Dark oak herringbone" loading="lazy"></figure>
+        <figure><img src="assets/img/work/w17.jpg" alt="Natural herringbone with matching skirting" loading="lazy"></figure>
+        <figure><img src="assets/img/work/w18.jpg" alt="Whitewashed planks in a gaming room" loading="lazy"></figure>
+        <figure><img src="assets/img/work/w19.jpg" alt="Light oak planks in a corridor" loading="lazy"></figure>
       </div>
     </div>
   </section>
