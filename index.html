@@ -26,6 +26,7 @@
   --latin:"Jost","Helvetica Neue",Arial,sans-serif;
 }
 *{box-sizing:border-box}
+button,a{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
 body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--ar-body);font-size:17px;line-height:1.75}
@@ -33,6 +34,9 @@ html[lang="en"] body{font-family:var(--latin);line-height:1.6}
 img{max-width:100%;display:block}
 a{color:inherit}
 :focus-visible{outline:2px solid var(--oak);outline-offset:3px}
+.skip{position:absolute;inset-inline-start:16px;top:-60px;z-index:100;background:var(--ink);color:var(--ground);padding:10px 16px;text-decoration:none;border-radius:2px}
+.skip:focus{top:12px}
+section[id],main[id]{scroll-margin-top:72px}
 .wrap{max-width:1180px;margin-inline:auto;padding-inline:clamp(16px,4vw,40px)}
 h1,h2,h3{font-family:var(--ar-display);font-weight:500;line-height:1.25;text-wrap:balance;margin:0}
 html[lang="en"] h1,html[lang="en"] h2,html[lang="en"] h3{font-family:var(--latin);font-weight:400;letter-spacing:-.01em}
@@ -46,16 +50,27 @@ header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;backgroun
 .brand img{width:38px;height:38px}
 .brand span{font-family:var(--latin);font-size:20px;letter-spacing:.04em}
 nav.links{display:flex;gap:26px;font-size:15px}
-nav.links a{text-decoration:none;color:var(--muted)}
-nav.links a:hover{color:var(--ink)}
+nav.links a{text-decoration:none;color:var(--muted);padding-block:10px;position:relative;transition:color .2s}
+nav.links a::after{content:"";position:absolute;inset-inline:0;bottom:4px;height:1.5px;background:var(--oak);transform:scaleX(0);transition:transform .25s ease-out}
+nav.links a:hover,nav.links a[aria-current="true"]{color:var(--ink)}
+nav.links a[aria-current="true"]::after{transform:scaleX(1)}
 .tools{display:flex;gap:8px;align-items:center}
-.btn{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--ink);background:var(--ink);color:var(--ground);padding:10px 20px;border-radius:2px;text-decoration:none;font-size:15px;font-family:inherit;cursor:pointer;transition:background .2s,color .2s}
-.btn:hover{background:var(--oak);border-color:var(--oak);color:#fff}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;border:1px solid var(--ink);background:var(--ink);color:var(--ground);padding:10px 20px;border-radius:2px;text-decoration:none;font-size:15px;font-family:inherit;cursor:pointer;transition:background .2s,color .2s}
+.btn:hover{background:var(--oak-ink);border-color:var(--oak-ink);color:#fff}
+.btn:active{transform:scale(.98)}
+.btn svg{width:18px;height:18px;flex:none}
 .btn.ghost{background:transparent;color:var(--ink)}
 .btn.ghost:hover{background:var(--ink);color:var(--ground);border-color:var(--ink)}
-.lang{font-family:var(--latin);font-size:13px;letter-spacing:.08em;padding:8px 12px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer;border-radius:2px}
+.lang{font-family:var(--latin);font-size:13px;letter-spacing:.08em;min-width:44px;min-height:44px;padding:8px 12px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer;border-radius:2px}
 .lang:hover{border-color:var(--ink)}
-@media (max-width:860px){nav.links{display:none}.tools .btn{display:none}}
+@media (max-width:860px){
+  .bar{flex-wrap:wrap;row-gap:0;padding-bottom:0}
+  nav.links{order:3;width:100%;justify-content:space-around;gap:0;border-top:1px solid var(--line);margin-inline:calc(-1*clamp(16px,4vw,40px));width:calc(100% + 2*clamp(16px,4vw,40px))}
+  nav.links a{flex:1;text-align:center;padding-block:11px;font-size:15px}
+  nav.links a::after{bottom:0;height:2px}
+  .tools .btn{display:none}
+  section[id],main[id]{scroll-margin-top:118px}
+}
 
 /* hero */
 .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(24px,5vw,72px);align-items:center;padding-block:clamp(40px,7vw,88px)}
@@ -63,6 +78,9 @@ nav.links a:hover{color:var(--ink)}
 .hero h1 em{font-style:normal;color:var(--oak-ink)}
 .hero .lede{margin-top:22px;max-width:34em;color:var(--muted);font-size:clamp(17px,1.6vw,19px)}
 .hero .cta{margin-top:32px;display:flex;flex-wrap:wrap;gap:12px}
+.facts{margin:36px 0 0;padding:20px 0 0;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:12px clamp(20px,4vw,48px);list-style:none}
+.facts b{display:block;font-family:var(--latin);font-weight:400;font-size:clamp(24px,2.6vw,32px);line-height:1.1;font-variant-numeric:tabular-nums}
+.facts span{font-size:14px;color:var(--muted)}
 .hero figure{margin:0;position:relative}
 .hero figure img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:2px}
 .hero figcaption{position:absolute;inset-inline-start:-1px;bottom:24px;background:var(--ground);padding:12px 18px;font-size:14px;border:1px solid var(--line);max-width:80%}
@@ -74,34 +92,67 @@ section{padding-block:clamp(56px,8vw,104px)}
 .sec-head h2{font-size:clamp(30px,4vw,46px);margin-top:10px}
 .sec-head p{max-width:30em;color:var(--muted)}
 
+/* steps */
+h2.eyebrow,html[lang="en"] h2.eyebrow{font-family:var(--latin);font-weight:500;letter-spacing:.22em;font-size:12px;margin-bottom:24px}
+.steps{padding-block:clamp(40px,6vw,72px);border-top:1px solid var(--line)}
+.steps ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,4vw,48px);counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:auto 1fr;gap:4px 16px;align-items:baseline}
+.steps li::before{content:"0" counter(s);grid-row:span 2;font-family:var(--latin);font-size:14px;letter-spacing:.12em;color:var(--oak-ink);border:1px solid var(--line);border-radius:50%;width:44px;height:44px;display:grid;place-items:center}
+.steps h3{font-size:20px}
+.steps p{color:var(--muted);font-size:15px}
+@media (max-width:760px){.steps ol{grid-template-columns:1fr}}
+
 /* gallery */
 .gallery{columns:4 220px;column-gap:14px}
 @media (max-width:600px){.gallery{columns:2;column-gap:10px}}
-.gallery figure{margin:0 0 14px;break-inside:avoid;overflow:hidden;border-radius:2px;background:var(--line)}
-@media (max-width:600px){.gallery figure{margin-bottom:10px}}
-.gallery img{width:100%;height:auto}
+.gallery button{display:block;width:100%;margin:0 0 14px;padding:0;border:0;background:var(--line);break-inside:avoid;overflow:hidden;border-radius:2px;cursor:zoom-in;position:relative}
+@media (max-width:600px){.gallery button{margin-bottom:10px}}
+.gallery img{width:100%;height:auto;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+@media (hover:hover){.gallery button:hover img{transform:scale(1.04)}}
+.gallery button::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(20,15,12,.35),transparent 40%);opacity:0;transition:opacity .25s}
+@media (hover:hover){.gallery button:hover::after{opacity:1}}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:50;background:rgba(18,14,11,.94);display:none;align-items:center;justify-content:center;padding:64px 72px}
+.lb.open{display:flex;animation:fade .2s ease-out}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.lb img{max-width:100%;max-height:100%;object-fit:contain;border-radius:2px;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.lb button{position:absolute;width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;cursor:pointer;display:grid;place-items:center;transition:background .2s}
+.lb button:hover{background:rgba(255,255,255,.2)}
+.lb button svg{width:22px;height:22px}
+.lb .x{top:max(14px,env(safe-area-inset-top));inset-inline-end:14px}
+.lb .prev{inset-inline-start:14px;top:50%;margin-top:-24px}
+.lb .next{inset-inline-end:14px;top:50%;margin-top:-24px}
+html[dir="rtl"] .lb .prev svg,html[dir="rtl"] .lb .next svg{transform:scaleX(-1)}
+.lb .n{position:absolute;bottom:max(18px,env(safe-area-inset-bottom));left:0;right:0;text-align:center;color:rgba(255,255,255,.75);font-family:var(--latin);font-size:13px;letter-spacing:.14em;font-variant-numeric:tabular-nums}
+@media (max-width:600px){.lb{padding:64px 8px 56px}.lb .prev,.lb .next{top:auto;bottom:max(8px,env(safe-area-inset-bottom));margin:0}.lb .n{bottom:max(22px,env(safe-area-inset-bottom))}}
+body.locked{overflow:hidden}
 
 /* catalog */
 .catalog{background:var(--panel);border-block:1px solid var(--line)}
 .filters{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:28px;align-items:center}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{font-family:inherit;font-size:14px;padding:7px 16px;border:1px solid var(--line);background:var(--ground);color:var(--ink);border-radius:999px;cursor:pointer}
+.chip{font-family:inherit;font-size:14px;min-height:44px;padding:8px 18px;transition:background .2s,border-color .2s,color .2s;border:1px solid var(--line);background:var(--ground);color:var(--ink);border-radius:999px;cursor:pointer}
 .chip:hover{border-color:var(--ink)}
 .chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--ground)}
 .chips.tone .chip::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;margin-inline-end:8px;vertical-align:-1px;background:var(--sw,transparent);border:1px solid rgba(0,0,0,.15)}
 .chips.tone .chip[data-v="all"]::before{display:none}
-.count{font-size:14px;color:var(--muted);margin-inline-start:auto}
+.count{font-size:14px;color:var(--muted);margin-inline-start:auto;font-variant-numeric:tabular-nums}
 .products{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
-.card{background:var(--ground);border:1px solid var(--line);border-radius:2px;display:flex;flex-direction:column;overflow:hidden}
-.card img{width:100%;aspect-ratio:12/5;object-fit:cover;background:var(--line)}
+.card{background:var(--ground);border:1px solid var(--line);border-radius:2px;display:flex;flex-direction:column;overflow:hidden;transition:transform .25s ease-out,box-shadow .25s ease-out,border-color .25s;animation:fade .3s ease-out both}
+@media (hover:hover){.card:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(43,33,26,.10);border-color:#CFC4B5}.card:hover img{transform:scale(1.05)}}
+.card .ph{overflow:hidden;aspect-ratio:12/5;background:var(--line);position:relative}
+.card img{width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.card .tag{position:absolute;top:10px;inset-inline-start:10px;font-size:12px;background:color-mix(in srgb,var(--ground) 90%,transparent);padding:3px 10px;border-radius:999px;color:var(--ink)}
 .card .body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:6px;flex:1}
 .card .code{font-family:var(--latin);font-size:12px;letter-spacing:.18em;color:var(--oak-ink);font-weight:500}
 .card h3{font-size:21px}
 .card .series{font-size:14px;color:var(--muted)}
 .card .spec{font-family:var(--latin);font-size:13px;color:var(--muted);direction:ltr;text-align:start}
 html[dir="rtl"] .card .spec{text-align:end}
-.card .ask{margin-top:auto;padding-top:12px;font-size:14px;text-decoration:none;color:var(--oak-ink);font-weight:500;align-self:flex-start}
-.card .ask:hover{text-decoration:underline}
+.card .ask{margin-top:auto;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding-top:8px;font-size:14px;text-decoration:none;color:var(--oak-ink);font-weight:500;align-self:flex-start}
+.card .ask svg{width:16px;height:16px}
+.card .ask:hover{text-decoration:underline;text-underline-offset:3px}
 .empty{color:var(--muted);padding:24px 0}
 
 /* contact */
@@ -109,30 +160,36 @@ html[dir="rtl"] .card .spec{text-align:end}
 .contact-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(28px,5vw,72px);align-items:start}
 .contact h2{font-size:clamp(32px,4.4vw,52px);margin-top:10px}
 .contact .lede{color:var(--muted);margin-top:16px;max-width:32em}
+.contact .btn{margin-top:28px}
 .cards{display:grid;gap:0;border-top:1px solid var(--line)}
 .row{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
 .row .k{font-size:14px;color:var(--muted)}
 .row .v{font-family:var(--latin);font-size:22px;letter-spacing:.04em;direction:ltr;user-select:all}
 .row a.v{text-decoration:none}
 .row a.v:hover{color:var(--oak-ink)}
-.copy{font-family:inherit;font-size:13px;border:1px solid var(--line);background:transparent;color:var(--ink);padding:6px 12px;cursor:pointer;border-radius:2px}
+.copy{font-family:inherit;font-size:13px;min-height:44px;min-width:64px;border:1px solid var(--line);background:transparent;color:var(--ink);padding:6px 14px;cursor:pointer;border-radius:2px}
 .copy:hover{border-color:var(--ink)}
 @media (max-width:860px){.contact-grid{grid-template-columns:1fr}}
 
 footer{padding-block:28px;font-size:14px;color:var(--muted)}
 @media (max-width:860px){footer{padding-bottom:96px}}
 footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.float-wa{position:fixed;bottom:calc(18px + env(safe-area-inset-bottom,0px));inset-inline-start:18px;z-index:20;width:56px;height:56px;border-radius:50%;background:#1f9d55;color:#fff;display:grid;place-items:center;box-shadow:0 6px 20px rgba(0,0,0,.2)}
+.float-wa{position:fixed;bottom:calc(18px + env(safe-area-inset-bottom,0px));inset-inline-start:18px;z-index:20;width:56px;height:56px;border-radius:50%;background:#1a8a4a;color:#fff;display:grid;place-items:center;box-shadow:0 6px 20px rgba(0,0,0,.2);transition:transform .2s ease-out}
+.float-wa:hover{transform:scale(1.06)}
+/* reveal */
+.rv{opacity:0;transform:translateY(14px);transition:opacity .6s ease-out,transform .6s ease-out}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}}
 .float-wa svg{width:28px;height:28px}
-[data-en]{}
 </style>
 </head>
 <body>
+<a class="skip" href="#catalog" data-en="Skip to catalog">انتقل إلى الكتالوج</a>
 
 <header class="top">
   <div class="wrap bar">
     <a class="brand" href="#home"><img src="assets/img/logo.svg" alt=""><span>Floora</span></a>
-    <nav class="links">
+    <nav class="links" aria-label="Sections">
       <a href="#catalog" data-en="Catalog">الكتالوج</a>
       <a href="#work" data-en="Our work">أعمالنا</a>
       <a href="#contact" data-en="Contact">تواصل معنا</a>
@@ -151,18 +208,31 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
       <h1 data-en-html="Every step tells the story of <em>Floora</em> luxury">كل خطوة تحكي <em>فخامة</em> فلورا</h1>
       <p class="lede" data-en="Parquet and wood alternatives — supplied and installed across Kuwait.">باركيه وبديل الخشب — توريد وتركيب في جميع مناطق الكويت.</p>
       <div class="cta">
-        <a class="btn" href="https://wa.me/96550841899" target="_blank" rel="noopener" data-en="Chat on WhatsApp">تواصل عبر واتساب</a>
+        <a class="btn" href="https://wa.me/96550841899" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12 0C5.4 0 .1 5.3.1 11.9c0 2.1.6 4.1 1.6 5.9L0 24l6.4-1.7a11.9 11.9 0 0 0 5.6 1.4h.1c6.6 0 11.9-5.3 11.9-11.9 0-3.2-1.2-6.2-3.5-8.3zM12 21.7c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.8 1 1-3.7-.2-.4a9.8 9.8 0 0 1-1.5-5.2c0-5.4 4.4-9.8 9.9-9.8 2.6 0 5.1 1 7 2.9a9.7 9.7 0 0 1 2.9 7c0 5.4-4.5 9.8-9.9 9.8zm5.4-7.3c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1l-.9 1.2c-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5a9 9 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.6l.4-.5.3-.5v-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.5.2-.7.2-1.3.2-1.5-.1-.1-.3-.2-.6-.3z"/></svg><span data-en="Chat on WhatsApp">تواصل عبر واتساب</span></a>
         <a class="btn ghost" href="#catalog" data-en="Browse the catalog">تصفح الكتالوج</a>
       </div>
+      <ul class="facts">
+        <li><b>21</b><span data-en="floor designs">تصميم أرضيات</span></li>
+        <li><b>2</b><span data-en="styles: planks &amp; herringbone">أنماط: ألواح وهيرينجبون</span></li>
+        <li><b data-en="All">كل</b><span data-en="areas of Kuwait">مناطق الكويت</span></li>
+      </ul>
     </div>
     <figure>
-      <img src="assets/img/hero.jpg" alt="Light oak herringbone parquet in a bedroom">
+      <img src="assets/img/hero.webp" width="720" height="900" fetchpriority="high" alt="Light oak herringbone parquet in a bedroom">
       <figcaption><b>Floora Parquet</b><span data-en="Touch of luxury for every floor">لمسة فخامة لكل أرضية</span></figcaption>
     </figure>
   </div>
 
-
-
+  <section class="steps" aria-labelledby="stepsH">
+    <div class="wrap">
+      <h2 id="stepsH" class="eyebrow">How it works</h2>
+      <ol>
+        <li><h3 data-en="Pick a design">اختر التصميم</h3><p data-en="Browse the catalog and filter by style and tone.">تصفح الكتالوج واختر حسب النمط واللون.</p></li>
+        <li><h3 data-en="Message us">راسلنا</h3><p data-en="Send the product code and room size on WhatsApp for a quote.">أرسل كود المنتج ومساحة الغرفة عبر واتساب لعرض السعر.</p></li>
+        <li><h3 data-en="We supply &amp; install">نورّد ونركّب</h3><p data-en="Our team delivers and installs anywhere in Kuwait.">فريقنا يوصل ويركّب في جميع مناطق الكويت.</p></li>
+      </ol>
+    </div>
+  </section>
 
   <section id="catalog" class="catalog">
     <div class="wrap">
@@ -198,27 +268,28 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
           <p class="eyebrow">Portfolio</p>
           <h2 data-en="Recent projects">من أعمالنا</h2>
         </div>
+        <p data-en="Floors we have installed in homes across Kuwait. Tap a photo to view it full size.">أرضيات قمنا بتركيبها في منازل بالكويت. اضغط على أي صورة لعرضها بالحجم الكامل.</p>
       </div>
       <div class="gallery">
-        <figure><img src="assets/img/work/w01.jpg" alt="Oak herringbone in a hallway" loading="lazy"></figure>
-        <figure><img src="assets/img/work/w02.jpg" alt="Dark oak laminate planks" loading="lazy"></figure>
-        <figure><img src="assets/img/work/w03.jpg" alt="Light oak herringbone bedroom" loading="lazy"></figure>
-        <figure><img src="assets/img/work/w04.jpg" alt="Brown oak laminate planks" loading="lazy"></figure>
-        <figure><img src="assets/img/work/w05.jpg" alt="Light herringbone in a bedroom" loading="lazy"></figure>
-        <figure><img src="assets/img/work/w06.jpg" alt="Walnut-look laminate planks" loading="lazy"></figure>
-        <figure><img src="assets/img/work/w07.jpg" alt="Oak planks through an open hallway" loading="lazy"></figure>
-        <figure><img src="assets/img/work/w08.jpg" alt="Natural oak herringbone" loading="lazy"></figure>
-        <figure><img src="assets/img/work/w09.jpg" alt="Classic laminate at a doorway" loading="lazy"></figure>
-        <figure><img src="assets/img/work/w10.jpg" alt="Herringbone down a corridor" loading="lazy"></figure>
-        <figure><img src="assets/img/work/w11.jpg" alt="Dark oak laminate in a bedroom" loading="lazy"></figure>
-        <figure><img src="assets/img/work/w12.jpg" alt="Rustic oak planks with white skirting" loading="lazy"></figure>
-        <figure><img src="assets/img/work/w13.jpg" alt="Oak planks with white skirting" loading="lazy"></figure>
-        <figure><img src="assets/img/work/w14.jpg" alt="Wall moulding panels" loading="lazy"></figure>
-        <figure><img src="assets/img/work/w15.jpg" alt="Grey oak herringbone" loading="lazy"></figure>
-        <figure><img src="assets/img/work/w16.jpg" alt="Dark oak herringbone" loading="lazy"></figure>
-        <figure><img src="assets/img/work/w17.jpg" alt="Natural herringbone with matching skirting" loading="lazy"></figure>
-        <figure><img src="assets/img/work/w18.jpg" alt="Whitewashed planks in a gaming room" loading="lazy"></figure>
-        <figure><img src="assets/img/work/w19.jpg" alt="Light oak planks in a corridor" loading="lazy"></figure>
+        <button type="button" data-i="0"><img src="assets/img/work/w01.webp" width="562" height="1000" alt="Oak herringbone in a hallway" loading="lazy" decoding="async"></button>
+        <button type="button" data-i="1"><img src="assets/img/work/w02.webp" width="750" height="1000" alt="Dark oak laminate planks" loading="lazy" decoding="async"></button>
+        <button type="button" data-i="2"><img src="assets/img/work/w03.webp" width="562" height="1000" alt="Light oak herringbone bedroom" loading="lazy" decoding="async"></button>
+        <button type="button" data-i="3"><img src="assets/img/work/w04.webp" width="562" height="1000" alt="Brown oak laminate planks" loading="lazy" decoding="async"></button>
+        <button type="button" data-i="4"><img src="assets/img/work/w05.webp" width="562" height="1000" alt="Light herringbone in a bedroom" loading="lazy" decoding="async"></button>
+        <button type="button" data-i="5"><img src="assets/img/work/w06.webp" width="750" height="1000" alt="Walnut-look laminate planks" loading="lazy" decoding="async"></button>
+        <button type="button" data-i="6"><img src="assets/img/work/w07.webp" width="1000" height="750" alt="Oak planks through an open hallway" loading="lazy" decoding="async"></button>
+        <button type="button" data-i="7"><img src="assets/img/work/w08.webp" width="562" height="1000" alt="Natural oak herringbone" loading="lazy" decoding="async"></button>
+        <button type="button" data-i="8"><img src="assets/img/work/w09.webp" width="905" height="1000" alt="Classic laminate at a doorway" loading="lazy" decoding="async"></button>
+        <button type="button" data-i="9"><img src="assets/img/work/w10.webp" width="750" height="1000" alt="Herringbone down a corridor" loading="lazy" decoding="async"></button>
+        <button type="button" data-i="10"><img src="assets/img/work/w11.webp" width="1000" height="750" alt="Dark oak laminate in a bedroom" loading="lazy" decoding="async"></button>
+        <button type="button" data-i="11"><img src="assets/img/work/w12.webp" width="1000" height="750" alt="Rustic oak planks with white skirting" loading="lazy" decoding="async"></button>
+        <button type="button" data-i="12"><img src="assets/img/work/w13.webp" width="1000" height="750" alt="Oak planks with white skirting" loading="lazy" decoding="async"></button>
+        <button type="button" data-i="13"><img src="assets/img/work/w14.webp" width="1000" height="750" alt="Wall moulding panels" loading="lazy" decoding="async"></button>
+        <button type="button" data-i="14"><img src="assets/img/work/w15.webp" width="1000" height="750" alt="Grey oak herringbone" loading="lazy" decoding="async"></button>
+        <button type="button" data-i="15"><img src="assets/img/work/w16.webp" width="1000" height="750" alt="Dark oak herringbone" loading="lazy" decoding="async"></button>
+        <button type="button" data-i="16"><img src="assets/img/work/w17.webp" width="1000" height="750" alt="Natural herringbone with matching skirting" loading="lazy" decoding="async"></button>
+        <button type="button" data-i="17"><img src="assets/img/work/w18.webp" width="750" height="1000" alt="Whitewashed planks in a gaming room" loading="lazy" decoding="async"></button>
+        <button type="button" data-i="18"><img src="assets/img/work/w19.webp" width="901" height="1000" alt="Light oak planks in a corridor" loading="lazy" decoding="async"></button>
       </div>
     </div>
   </section>
@@ -229,7 +300,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
       <div>
         <p class="eyebrow">Contact</p>
         <h2 data-en="Let's plan your floor">خلّنا نخطط لأرضيتك</h2>
-        
+        <p class="lede" data-en="Send us a photo of your room and the design you like — we will reply with a quote.">أرسل لنا صورة الغرفة والتصميم الذي أعجبك — وسنرد عليك بعرض سعر.</p>
+        <a class="btn" href="https://wa.me/96550841899" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12 0C5.4 0 .1 5.3.1 11.9c0 2.1.6 4.1 1.6 5.9L0 24l6.4-1.7a11.9 11.9 0 0 0 5.6 1.4h.1c6.6 0 11.9-5.3 11.9-11.9 0-3.2-1.2-6.2-3.5-8.3zM12 21.7c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.8 1 1-3.7-.2-.4a9.8 9.8 0 0 1-1.5-5.2c0-5.4 4.4-9.8 9.9-9.8 2.6 0 5.1 1 7 2.9a9.7 9.7 0 0 1 2.9 7c0 5.4-4.5 9.8-9.9 9.8zm5.4-7.3c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1l-.9 1.2c-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5a9 9 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.6l.4-.5.3-.5v-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.5.2-.7.2-1.3.2-1.5-.1-.1-.3-.2-.6-.3z"/></svg><span data-en="Get a quote on WhatsApp">اطلب عرض سعر عبر واتساب</span></a>
       </div>
       <div class="cards">
         <div class="row"><span class="k" data-en="Phone / WhatsApp">الهاتف / واتساب</span><span style="display:flex;gap:12px;align-items:center"><a class="v" id="phone" href="https://wa.me/96550841899" target="_blank" rel="noopener">+965 5084 1899</a><button class="copy" type="button" id="copyBtn" data-en="Copy">نسخ</button></span></div>
@@ -246,6 +318,14 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   </div>
 </footer>
 
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <img alt="">
+  <button class="x" type="button" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <button class="prev" type="button" aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <button class="next" type="button" aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+  <div class="n" aria-live="polite"></div>
+</div>
+
 <a class="float-wa" href="https://wa.me/96550841899" target="_blank" rel="noopener" aria-label="WhatsApp">
   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12 0C5.4 0 .1 5.3.1 11.9c0 2.1.6 4.1 1.6 5.9L0 24l6.4-1.7a11.9 11.9 0 0 0 5.6 1.4h.1c6.6 0 11.9-5.3 11.9-11.9 0-3.2-1.2-6.2-3.5-8.3zM12 21.7c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.8 1 1-3.7-.2-.4a9.8 9.8 0 0 1-1.5-5.2c0-5.4 4.4-9.8 9.9-9.8 2.6 0 5.1 1 7 2.9a9.7 9.7 0 0 1 2.9 7c0 5.4-4.5 9.8-9.9 9.8zm5.4-7.3c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1l-.9 1.2c-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5a9 9 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.6l.4-.5.3-.5v-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.5.2-.7.2-1.3.2-1.5-.1-.1-.3-.2-.6-.3z"/></svg>
 </a>
@@ -254,6 +334,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 (function(){
   var html=document.documentElement, btn=document.getElementById('langToggle');
   var WA='96550841899';
+  var WA_ICON=document.querySelector('.float-wa svg').outerHTML;
   var SERIES={
     klasik:{en:'Classic series',ar:'سلسلة كلاسيك',spec:'AC3 · 8 mm · 192.5 × 1200 mm'},
     modern:{en:'Modern series',ar:'سلسلة مودرن',spec:'AC4 · 8 mm · 192.5 × 1200 mm · V-groove'},
@@ -293,14 +374,15 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   function render(){
     var en=html.lang==='en';
     var list=P.filter(function(p){ return (state.type==='all'||p[3]===state.type)&&(state.tone==='all'||p[5]===state.tone); });
-    grid.innerHTML=list.map(function(p){
+    grid.innerHTML=list.map(function(p,i){
       var s=SERIES[p[4]], w=WOOD[p[6]];
       var msg=(en?'Hello Floora, I am interested in ':'مرحباً فلورا، أرغب بالاستفسار عن ')+p[0]+' '+p[1]+' ('+s.en+')';
-      return '<article class="card"><img src="assets/img/catalog/'+p[2]+'.jpg" alt="'+esc(p[1])+' floor swatch" loading="lazy">'+
+      return '<article class="card" style="animation-delay:'+Math.min(i*35,350)+'ms"><div class="ph"><img src="assets/img/catalog/'+p[2]+'.webp" width="720" height="300" alt="'+esc(p[1])+' floor swatch" loading="lazy" decoding="async">'+
+        '<span class="tag">'+(p[3]==='herringbone'?(en?'Herringbone':'هيرينجبون'):(en?'Planks':'ألواح'))+'</span></div>'+
         '<div class="body"><span class="code">'+esc(p[0])+'</span><h3>'+esc(p[1])+'</h3>'+
         '<span class="series">'+esc((en?s.en:s.ar)+' · '+(en?w[0]:w[1]))+'</span>'+
         (s.spec?'<span class="spec">'+s.spec+'</span>':'')+
-        '<a class="ask" href="https://wa.me/'+WA+'?text='+encodeURIComponent(msg)+'" target="_blank" rel="noopener">'+(en?'Ask on WhatsApp →':'استفسر عبر واتساب ←')+'</a></div></article>';
+        '<a class="ask" href="https://wa.me/'+WA+'?text='+encodeURIComponent(msg)+'" target="_blank" rel="noopener">'+WA_ICON+(en?'Ask on WhatsApp':'استفسر عبر واتساب')+'</a></div></article>';
     }).join('') || '<p class="empty">'+(en?'No products match these filters.':'لا توجد منتجات مطابقة.')+'</p>';
     count.textContent=en?(list.length+' products'):(list.length+' منتج');
   }
@@ -322,12 +404,51 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     html.lang=en?'en':'ar'; html.dir=en?'ltr':'rtl';
     nodes.forEach(function(n){ n.innerHTML = en ? (n.dataset.enHtml||n.dataset.en) : n.dataset.ar; });
     btn.textContent=en?'عربي':'EN';
+    btn.setAttribute('aria-label',en?'التبديل إلى العربية':'Switch to English');
     render();
     try{localStorage.setItem('floora-lang',lang)}catch(e){}
   }
   btn.addEventListener('click',function(){ set(html.lang==='en'?'ar':'en'); });
   render();
   try{ if(localStorage.getItem('floora-lang')==='en') set('en'); }catch(e){}
+
+  // active section in nav
+  var navLinks=[].slice.call(document.querySelectorAll('nav.links a'));
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting) navLinks.forEach(function(a){ a.setAttribute('aria-current', a.hash==='#'+e.target.id ? 'true':'false'); }); });
+    },{rootMargin:'-45% 0px -50% 0px'});
+    ['catalog','work','contact'].forEach(function(id){ io.observe(document.getElementById(id)); });
+    // gentle reveal
+    var rv=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); rv.unobserve(e.target);} }); },{rootMargin:'0px 0px -8% 0px'});
+    document.querySelectorAll('.sec-head,.steps li,.contact-grid > *').forEach(function(el){ el.classList.add('rv'); rv.observe(el); });
+  }
+
+  // lightbox
+  var lb=document.getElementById('lb'), lbImg=lb.querySelector('img'), lbN=lb.querySelector('.n');
+  var shots=[].slice.call(document.querySelectorAll('.gallery button')), cur=0, opener=null;
+  function show(i){ cur=(i+shots.length)%shots.length; var im=shots[cur].querySelector('img'); lbImg.src=im.src; lbImg.alt=im.alt; lbN.textContent=(cur+1)+' / '+shots.length; }
+  function open(i){ opener=document.activeElement; show(i); lb.classList.add('open'); document.body.classList.add('locked'); lb.querySelector('.x').focus(); }
+  function close(){ lb.classList.remove('open'); document.body.classList.remove('locked'); if(opener) opener.focus(); }
+  var fwd=function(){ show(cur+1); }, back=function(){ show(cur-1); };
+  shots.forEach(function(b,i){ b.addEventListener('click',function(){ open(i); }); });
+  lb.querySelector('.x').addEventListener('click',close);
+  lb.querySelector('.next').addEventListener('click',fwd);
+  lb.querySelector('.prev').addEventListener('click',back);
+  lb.addEventListener('click',function(e){ if(e.target===lb) close(); });
+  document.addEventListener('keydown',function(e){
+    if(!lb.classList.contains('open')) return;
+    var rtl=html.dir==='rtl';
+    if(e.key==='Escape') close();
+    else if(e.key==='ArrowRight') (rtl?back:fwd)();
+    else if(e.key==='ArrowLeft') (rtl?fwd:back)();
+    else if(e.key==='Tab'){ var f=[].slice.call(lb.querySelectorAll('button')), a=f.indexOf(document.activeElement);
+      e.preventDefault(); f[(a+(e.shiftKey?-1:1)+f.length)%f.length].focus(); }
+  });
+  var tx=null;
+  lb.addEventListener('touchstart',function(e){ tx=e.touches[0].clientX; },{passive:true});
+  lb.addEventListener('touchend',function(e){ if(tx===null) return; var dx=e.changedTouches[0].clientX-tx; tx=null;
+    if(Math.abs(dx)>50){ var nxt=dx<0; if(html.dir==='rtl') nxt=!nxt; (nxt?fwd:back)(); } });
 
   var copy=document.getElementById('copyBtn');
   copy.addEventListener('click',function(){
